@@ -34,6 +34,8 @@ public:
 	
 	~List()
 	{
+		pop_front();
+		pop_back();
 		cout << "LDertructor: \t" << this << endl;
 	}
 	void push_front(int Data)
@@ -82,9 +84,31 @@ public:
 	//                      Removing elements:
 	void pop_front()
 	{
-		Head = Head->pNext;
+		if (Head == nullptr && Tail == nullptr)
+		{
+			return;
+		}
+		if (Head == Tail)
+		{
+			delete Head;
+			Head = Tail = nullptr;
+			return;
+		}
+		Head = Head -> pNext;
 		delete Head->pPrev;
 		Head->pPrev = nullptr;
+		size--;
+	}
+
+	void pop_back()
+	{
+		if (Head == nullptr && Tail == nullptr)
+		{
+			return pop_front();
+		}
+		Tail = Tail->pPrev;
+		delete Tail->pNext;
+		Tail->pNext = nullptr;
 		size--;
 	}
 };
@@ -96,14 +120,14 @@ void main()
 	cout << "Enter quantity list: "; 
 	cin >> n;
 	List list;
-	//for (int i = 0; i < n; i++)
-	//{
-	//	list.push_front(rand() % 100);
-	//}
+	for (int i = 0; i < n; i++)
+	{
+		list.push_front(rand() % 100);
+	}
 	for (int i = 0; i < n; i++)
 	{
 		list.push_back(rand() % 100);
 	}
 	list.print();
-	//list.reverse_print();
+	list.reverse_print();
 }
