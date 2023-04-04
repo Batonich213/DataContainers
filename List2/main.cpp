@@ -57,7 +57,7 @@ public:
 			cout << Temp << tab << Temp->pPrev << tab << Temp->Data << tab << Temp->pNext << endl;
 			
 		}
-		cout << "Size element list: " << size << endl;
+		cout << "Quantity element list: " << size << endl;
 	}
 	void reverse_print()const
 	{
@@ -66,19 +66,36 @@ public:
 			cout << Temp << tab << Temp->pPrev << tab << Temp->Data << tab << Temp->pNext << endl;
 		}
 	}
+	void push_back(int Data)
+	{
+		if (Head == nullptr && Tail == nullptr)
+		{
+			return push_front(Data);
+			Element* New = new Element(Data);
+			New->pPrev = Tail;
+			Tail->pNext = New;
+			Tail = New;
+			size++;
+		}
+		
+	}
 };
 
 
 void main()
 {
 	int n;
-	cout << "Enter size list: "; 
+	cout << "Enter quantity list: "; 
 	cin >> n;
 	List list;
+	//for (int i = 0; i < n; i++)
+	//{
+	//	list.push_front(rand() % 100);
+	//}
 	for (int i = 0; i < n; i++)
 	{
-		list.push_front(rand() % 100);
+		list.push_back(rand() % 100);
 	}
 	list.print();
-	list.reverse_print();
+	//list.reverse_print();
 }
