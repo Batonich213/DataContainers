@@ -34,8 +34,8 @@ public:
 	
 	~List()
 	{
-		pop_front();
-		pop_back();
+		while (Tail)pop_back();
+		
 		cout << "LDertructor: \t" << this << endl;
 	}
 	void push_front(int Data)
@@ -103,14 +103,32 @@ public:
 	void pop_back()
 	{
 		if (Head == nullptr && Tail == nullptr)
-		{
 			return pop_front();
-		}
 		Tail = Tail->pPrev;
 		delete Tail->pNext;
 		Tail->pNext = nullptr;
 		size--;
 	}
+	void insert(int Data, int Index)
+	{
+		if (Index > size)return;
+		Element* Temp;
+		if (Index < size / 2)
+		{
+			Temp = Head;
+			for (int i = 0; i < Index; i++) Temp = Temp->pNext;
+		}
+		else
+		{
+			Temp = Tail;
+		for (int i = 0; i < Index; i++) Temp = Temp->pPrev;
+		}
+		Element* New = new Element(Data);
+		New->pNext = Temp;
+		New->pPrev = Temp->pPrev;
+		Temp->pPrev->pNext = New;
+	}
+
 };
 
 
