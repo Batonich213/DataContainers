@@ -79,6 +79,14 @@ public:
 		}
 		
 	}
+	//                      Removing elements:
+	void pop_front()
+	{
+		Head = Head->pNext;
+		delete Head->pPrev;
+		Head->pPrev = nullptr;
+		size--;
+	}
 };
 
 
