@@ -1,4 +1,5 @@
 ﻿#include<iostream>
+#include<string>
 using namespace std;
 
 #define tab "\t"
@@ -363,4 +364,9 @@ void main()
 	cout << endl;
 	print(list3);
 	reverse_print(list3);
+	//List<double> d_list_1 = { 2.4,3.10,8.6 };
+	//List<double> d_list_1 = { 4.4,5.10,1.6 };
+	//for (double i : d_list_1);
+	List<std::string> s_list_1 = { "Хорошо"," живёт ", "на", "свете" };
+
 }
