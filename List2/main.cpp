@@ -296,6 +296,14 @@ void print(const List& list)
 	}
 	cout << endl;
 }
+void reverse_print(const List& list)
+{
+	for (List::ConstReverseIterator it = list.rbegin(); it != list.rend(); ++it)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
+}
 
 //#define BASE_CHECK
 //#define ITERATORS_CHECK
@@ -354,4 +362,5 @@ void main()
 	}
 	cout << endl;
 	print(list3);
+	reverse_print(list3);
 }
