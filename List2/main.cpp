@@ -288,6 +288,14 @@ List operator+(const List& left, const List& right)
 	for (List::ConstIterator it = right.begin(); it != right.end(); ++it)cat.push_back(*it);
 	return cat;
 }
+void print(const List& list)
+{
+	for (List::ConstIterator it = list.begin(); it != list.end(); ++it)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
+}
 
 //#define BASE_CHECK
 //#define ITERATORS_CHECK
@@ -338,6 +346,12 @@ void main()
 	for (int i : list1)cout << i << tab; cout << endl;
 	for (int i : list2)cout << i << tab; cout << endl;
 	for (int i : list3)cout << i << tab; cout << endl;
-	for (int& i : list3)i *= 10;
-	for (int i : list3)cout << i << tab; cout << endl;
+	//for (int& i : list3)i *= 10;
+	//for (int i : list3)cout << i << tab; cout << endl;
+	for (List::ReverseIterator it = list3.rbegin(); it != list3.rend(); ++it)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
+	print(list3);
 }
