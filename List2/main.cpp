@@ -52,12 +52,12 @@ public:
 		ConstIterator(Element* Temp = nullptr) :ConstBaseIterator(Temp) {}
 		~ConstIterator() {}
 
-		ConstIterator& operator++()	//Prefix increment
+		ConstIterator& operator++()	
 		{
 			Temp = Temp->pNext;
 			return *this;
 		}
-		ConstIterator operator++(int)	//Postfix increment
+		ConstIterator operator++(int)	
 		{
 			ConstIterator old = *this;
 			Temp = Temp->pNext;
@@ -202,17 +202,9 @@ public:
 		{
 			Head = Tail = new Element(Data);
 			size++;
-			return;	//Êëþ÷åâîå ñëîâî 'return' ïðåðûâàåò ðàáîòó ôóíêöèè 
-			//è âîçâðàùàåò óïðàâëåíèå íà ìåñòî âûçîâà. 
+			return;	 
 		}
-		/*//1) Ñîçäàåì íîâûé ýëåìåíò:
-		Element* New = new Element(Data);
-		//2) Ïðèñòûêîâûâàåì íîâûé ýëåìåíò ê ñïèñêó:
-		New->pNext = Head;
-		//3) Ïðèñòûêîâûâàåì ñïèñîê ê íîâîìó ýëåìåíòó:
-		Head->pPrev = New;
-		//4) Ïåðåâîäèì Ãîëîâó íà íîâûé ýëåìåíò:
-		Head = New;*/
+	
 
 		Head = Head->pPrev = new Element(Data, Head);
 
