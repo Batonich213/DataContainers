@@ -53,12 +53,12 @@ public:
 		ConstIterator(Element* Temp = nullptr) :ConstBaseIterator(Temp) {}
 		~ConstIterator() {}
 
-		ConstIterator& operator++()	
+		ConstIterator& operator++()	//Prefix increment
 		{
 			ConstBaseIterator::Temp = ConstBaseIterator::Temp->pNext;
 			return *this;
 		}
-		ConstIterator operator++(int)	
+		ConstIterator operator++(int)	//Postfix increment
 		{
 			ConstIterator old = *this;
 			ConstBaseIterator::Temp = ConstBaseIterator::Temp->pNext;
@@ -110,7 +110,7 @@ public:
 	public:
 		Iterator(Element* Temp = nullptr) :ConstIterator(Temp) {}
 		~Iterator() {}
-		int& operator*()
+		T& operator*()
 		{
 			return ConstBaseIterator::Temp->Data;
 		}
@@ -120,7 +120,7 @@ public:
 	public:
 		ReverseIterator(Element* Temp = nullptr) :ConstReverseIterator(Temp) {}
 		~ReverseIterator() {}
-		int& operator*()
+		T& operator*()
 		{
 			return ConstBaseIterator::Temp->Data;
 		}
@@ -166,7 +166,7 @@ public:
 		size = 0;
 		cout << "LConstructor:\t" << this << endl;
 	}
-	List(const std::initializer_list<int>& il) :List()
+	List(const std::initializer_list<T>& il) :List()
 	{
 		for (T const* it = il.begin(); it != il.end(); it++)
 		{
@@ -203,9 +203,17 @@ public:
 		{
 			Head = Tail = new Element(Data);
 			size++;
-			return;	 
+			return;	//Êëþ÷åâîå ñëîâî 'return' ïðåðûâàåò ðàáîòó ôóíêöèè 
+			//è âîçâðàùàåò óïðàâëåíèå íà ìåñòî âûçîâà. 
 		}
-	
+		/*//1) Ñîçäàåì íîâûé ýëåìåíò:
+		Element* New = new Element(Data);
+		//2) Ïðèñòûêîâûâàåì íîâûé ýëåìåíò ê ñïèñêó:
+		New->pNext = Head;
+		//3) Ïðèñòûêîâûâàåì ñïèñîê ê íîâîìó ýëåìåíòó:
+		Head->pPrev = New;
+		//4) Ïåðåâîäèì Ãîëîâó íà íîâûé ýëåìåíò:
+		Head = New;*/
 
 		Head = Head->pPrev = new Element(Data, Head);
 
@@ -235,7 +243,14 @@ public:
 			Temp = Tail;
 			for (int i = 0; i < size - Index - 1; i++)Temp = Temp->pPrev;
 		}
-
+		/*//1) Ñîçäàåì íîâûé ýëåìåíò:
+		Element* New = new Element(Data);
+		//2) Ïðèñòûêîâûâàåì íîâûé ýëåìåíò ê ñïèñêó:
+		New->pNext = Temp;
+		New->pPrev = Temp->pPrev;
+		//3) Ïðèñòûêîâûâàåì ñïèñîê ê ýëåìåíòó:
+		Temp->pPrev->pNext = New;
+		Temp->pPrev = New;*/
 
 		Temp->pPrev = Temp->pPrev->pNext = new Element(Data, Temp, Temp->pPrev);
 
@@ -252,9 +267,11 @@ public:
 			Head = Tail = nullptr;
 			return;
 		}
-
+		//1) Èñêëþ÷àåì ýëåìåíò èç ñïèñêà:
 		Head = Head->pNext;
+		//2) Óäàëÿåì ýëåìåíò èç ïàìÿòè:
 		delete Head->pPrev;
+		//3) "Çàáûâàåì" ïðî óäàëåííûé ýëåìåíò:
 		Head->pPrev = nullptr;
 		size--;
 	}
@@ -301,6 +318,7 @@ template<typename T>void reverse_print(const List<T>& list)
 {
 	for (typename List<T>::ConstReverseIterator it = list.rbegin(); it != list.rend(); ++it)
 	{
+		//*it*=10;
 		cout << *it << tab;
 	}
 	cout << endl;
@@ -357,16 +375,30 @@ void main()
 	for (int i : list3)cout << i << tab; cout << endl;
 	//for (int& i : list3)i *= 10;
 	//for (int i : list3)cout << i << tab; cout << endl;
-	/*for (List::ReverseIterator it = list3.rbegin(); it != list3.rend(); ++it)
-	{
-		cout << *it << tab;
-	}*/
-	cout << endl;
 	print(list3);
 	reverse_print(list3);
-	//List<double> d_list_1 = { 2.4,3.10,8.6 };
-	//List<double> d_list_1 = { 4.4,5.10,1.6 };
-	//for (double i : d_list_1);
-	List<std::string> s_list_1 = { "Хорошо"," живёт ", "на", "свете" };
 
+	List<double> d_list_1 = { 2.7, 3.14, 8.2 };
+	List<double> d_list_2 = { 7.3, 5.4 };
+	List<double> d_list_3 = d_list_1 + d_list_2;
+	for (double i : d_list_1)cout << i << tab; cout << endl;
+	for (double i : d_list_2)cout << i << tab; cout << endl;
+	print(d_list_3);
+	reverse_print(d_list_3);
+
+	List<std::string> s_list_1 = { "Õîðîøî", "Æèâåò", "íà", "ñâåòå" };
+	List<std::string> s_list_2 = { "Âèííè", "Ïóõ" };
+	List<std::string> s_list_3 = s_list_1 + s_list_2;
+	for (List<std::string>::Iterator it = s_list_3.begin(); it != s_list_3.end(); ++it)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
+	print(s_list_2);
+	print(s_list_3);
+	reverse_print(s_list_3);
+
+	List<char> c_list = { 'S', 'a', 'm', 's', 'u', 'n', 'g' };
+	print(c_list);
+	reverse_print(c_list);
 }
