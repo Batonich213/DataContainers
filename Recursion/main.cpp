@@ -13,6 +13,9 @@ void elevator(int floor)
 	elevator(floor - 1);
 }
 
+
+
+
 int factorial(int n)
 {
 	if (n < 0)
@@ -22,6 +25,8 @@ int factorial(int n)
 	else 
 		return n * factorial(n - 1);
 }
+
+
 
 double power(double a, int n)
 {
