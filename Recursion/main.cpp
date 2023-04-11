@@ -23,14 +23,27 @@ int factorial(int n)
 		return n * factorial(n - 1);
 }
 
+double power(double a, int n)
+{
+	if (n == 0)
+		return 1;
+	else if (n > 0) return a * power(a, n - 1);
+	else if (n < 0) return  1 / power(a, -n);
+}
+
 void main()
 {
 	//cout << "Hello Recursion";
 	//main();
 	int n;
-	cout << "Enter nubmer";
+	int a;
+	cout << "Enter number";
+	 cin >> a;
+	 cout << "Enter power ";
 	 cin >> n;
-	factorial(n);
+	 cout << a << " ^ " << n << " is " << power(a, n) << endl;
+	 
+	//factorial(n);
 	cout << "Factorial for " << n << " is " << factorial(n) << endl;
 }
 
