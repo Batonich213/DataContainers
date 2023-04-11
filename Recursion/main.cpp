@@ -33,9 +33,6 @@ double power(double a, int n)
 }
 
 
-//double SubFactorial(int n);
-
-
 
 void main()
 {
