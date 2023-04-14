@@ -51,11 +51,11 @@ void main()
 	//main();
 	int n;
 	int a;
-	int predel;
+	int limit;
 	//cout << "Enter number";
 	 //cin >> a;
 	 cout << "Enter power ";
-	 cin >> predel;
+	 cin >> limit;
 	 //cout << a << " ^ " << n << " is " << power(a, n) << endl;
 	 
 	//factorial(n);
@@ -68,7 +68,7 @@ void main()
 
 
 
-	 for (int i = 0; i <= predel; i++)
+	 for (int i = 0; i <= limit; i++)
 	 {
 		 cout << Fibonacci(i) << " " << endl;
 	 }
