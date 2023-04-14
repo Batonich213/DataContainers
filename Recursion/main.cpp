@@ -38,8 +38,8 @@ double power(double a, int n)
 
 void Fibonacci(long long n, long long int a = 0, long long int b =1)
 {
-	if (a + b >= n)return;
-	cout << a + b << "\t";
+	if (a >= n)return;
+	cout << a  << "\t";
 	Fibonacci(n, b, a + b);
 	//if (n <= 2) return 1;
 	//else if (n > 2) return (Fibonacci(n - 1) + Fibonacci(n - 2));
