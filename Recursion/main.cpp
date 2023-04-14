@@ -38,9 +38,9 @@ double power(double a, int n)
 
 double Fibonacci(int n)
 {
-	if (n <= 2) return (Fibonacci(n + 2) + Fibonacci(n + 1));
-	else if(n >= 2) return (Fibonacci(n - 1) + Fibonacci(n - 2));
-	//return n <= 2 ? (Fibonacci(n + 2) + Fibonacci(n + 1)) : n >=2 ? (Fibonacci(n - 1) + Fibonacci(n - 2);
+	if (n <= 2) return 1;
+	else if(n > 2) return (Fibonacci(n - 1) + Fibonacci(n - 2));
+	//return n <= 2 ? 1 : n >=2 ? (Fibonacci(n - 1) + Fibonacci(n - 2);
 }
 
 
