@@ -36,6 +36,13 @@ double power(double a, int n)
 	return n == 0 ? 1 : n > 0 ? a * power(a, n - 1) : 1 / power(a, -n);
 }
 
+double Fibonacci(int n)
+{
+	if (n <= 2) return 1;
+	else return (Fibonacci(n - 1) + Fibonacci(n - 2));
+	//return n < 3 ? 1 : n>3 ? (Fibonacci(n - 1) + Fibonacci(n - 2);
+}
+
 
 
 void main()
@@ -44,11 +51,12 @@ void main()
 	//main();
 	int n;
 	int a;
-	cout << "Enter number";
-	 cin >> a;
+	int predel;
+	//cout << "Enter number";
+	 //cin >> a;
 	 cout << "Enter power ";
-	 cin >> n;
-	 cout << a << " ^ " << n << " is " << power(a, n) << endl;
+	 cin >> predel;
+	 //cout << a << " ^ " << n << " is " << power(a, n) << endl;
 	 
 	//factorial(n);
 	//cout << "Factorial for " << n << " is " << factorial(n) << endl;
@@ -57,5 +65,12 @@ void main()
 	 //int f = 4;
 	 //int l = 5;
 	 //cout << t + f * l << endl; // wow
+
+
+
+	 for (int i = 0; i <= predel; i++)
+	 {
+		 cout << Fibonacci(i) << " " << endl;
+	 }
 }
 
