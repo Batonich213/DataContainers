@@ -6,6 +6,7 @@ class BinaryTree
 {
 	class Element
 	{
+	protected:
 		int Data;
 		Element* pLeft;
 		Element* pRight;
@@ -19,6 +20,7 @@ class BinaryTree
 				cout << "Edetrucotr:\t" << this << endl;
 			}
 		friend class BinaryTree;
+		friend class UniqieTree;
 	}*Root; //—разу же объ€вл€ем Root
 public:
 	Element* getRoot()const
@@ -68,6 +70,30 @@ public:
 		if (Root->pRight == nullptr)return Root->Data;
 		else return maxValue(Root->pRight);
 	}
+	int Count(Element* Root)
+	{
+		if (Root == nullptr) return 0;
+		else return Count(Root->pLeft) + Count(Root->pRight) + 1;
+	}
+};
+class UniqueTree : public BinaryTree
+{
+public:
+	void insert(int Data, Element* Root)
+	{
+		if (this->Root == nullptr)this->Root = new Element(Data);
+		if (Root == nullptr)return;
+		if (Data < Root->Data)
+		{
+			if (Root->pLeft == nullptr)Root->pLeft = new Element(Data);
+			else insert(Data, Root->pLeft);
+		}
+		else
+		{
+			if (Root->pRight == nullptr)Root->pRight = new Element(Data);
+			else insert(Data, Root->pRight);
+		}
+	}
 };
 
 
@@ -87,4 +113,8 @@ void main()
 	cout << endl;
 	cout << "Min value in tree: " << tree.minValue(tree.getRoot()) << endl;
 	cout << "Max value in tree: " << tree.maxValue(tree.getRoot()) << endl;
+	cout << "Tree size: " << tree.Count(tree.getRoot()) << endl;
+
+
+
 }
