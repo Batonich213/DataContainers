@@ -119,19 +119,6 @@ public:
 		return (double)Sum(Root) / (double)Count(Root);
 	}
 
-	int Depth(Element* Root)
-	{
-		//if (Root == nullptr) return 0;
-		//return max(Depth(Root->pLeft) + 1, Depth(Root->pRight) + 1);
-
-		return Root == nullptr ? 0 : max(Depth(Root->pLeft) + 1, Depth(Root->pRight) + 1);
-
-		//if (Depth(Root->pLeft) + 1 >
-		//	Depth(Root->pRight) + 1)
-		//	return Depth(Root->pLeft) + 1;
-		//else return Depth(Root->pRight) + 1;
-	}
-
 	
 
 	void print(Element* Root)const
