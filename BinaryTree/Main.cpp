@@ -54,18 +54,7 @@ public:
 
 	~Tree()
 	{
-		Clear(Root);
 		cout << "TDestructor:\t" << this << endl;
-	}
-
-	void Clear(Element* Root)
-	{
-		if (Root != NULL)
-		{
-			Clear(Root->pLeft);
-			Clear(Root->pRight);
-			delete Root;
-		}
 	}
 
 	void insert(int Data, Element* Root)
