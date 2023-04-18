@@ -20,11 +20,11 @@ protected:
 		Element(int Data, Element* pLeft = nullptr, Element* pRight = nullptr)
 			:Data(Data), pLeft(pLeft), pRight(pRight)
 		{
-			//cout << "EConstructor:\t" << this << endl;
+			cout << "EConstructor:\t" << this << endl;
 		}
 		~Element()
 		{
-			//cout << "EDestructor:\t" << this << endl;
+			cout << "EDestructor:\t" << this << endl;
 		}
 		friend class Tree;
 		friend class UniqueTree;
@@ -132,47 +132,7 @@ public:
 		//else return Depth(Root->pRight) + 1;
 	}
 
-	void Erase(int index)
-	{
-		Element* parent = NULL;
-		Element* value = Root;
-
-		while (value->Data != index)
-		{
-			parent = value;
-			if (value->Data > index)
-			{
-				value = value->pLeft;
-			}
-			else
-			{
-				value = value->pRight;
-			}
-		}
-
-		if (!value)return;
-
-		if (value->pLeft == NULL)// если у удаляемого элемента нет левого потомка
-		{
-			// цепляем правого потомка
-			if (parent->pLeft == value) parent->pLeft = value->pRight;
-			if (parent->pRight == value)parent->pRight = value->pRight;
-			--size;
-			delete value;
-		}
-
-		if (value->pRight = NULL)// если у удаляемого элемента нет правого потомка
-		{
-			//цепляем левого потомка
-			if (parent->pLeft == value)parent->pLeft = value->pLeft;
-			if (parent->pRight == value)parent->pRight = value->pLeft;
-			--size;
-			delete value;
-		}
-
-		// если у элемента есть оба потомка
-		//???????????????????
-	}
+	
 
 	void print(Element* Root)const
 	{
